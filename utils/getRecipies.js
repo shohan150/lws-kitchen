@@ -22,7 +22,7 @@ export function getRecipe(title){
    convertedTitle = convertedTitle.replace(/%3B/g, ';');
    convertedTitle = convertedTitle.replace(/%3D/g, '=');
 
-   console.log("a",convertedTitle);
+   console.log("searched title :",convertedTitle);
    
 
    return recipies.find((recipe) => recipe.title === convertedTitle);

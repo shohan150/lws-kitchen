@@ -1,4 +1,4 @@
-function convertDateFormat(dateString) {
+export default function convertDateFormat(dateString) {
    const months = [
      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -14,7 +14,4 @@ function convertDateFormat(dateString) {
    return `${parseInt(day, 10)} ${monthName} ${year}`;
  }
  
- // Example usage:
- const formattedDate = convertDateFormat('2024-09-01');
- console.log(formattedDate); // Output: 1 Sep 2024
  

@@ -9,7 +9,7 @@ export default function Category() {
          {
             categories.map((category) => (
                <div key={category.id} className="text-center">
-                  <Link href={`/${category.id}`} >
+                  <Link href={`/${category.name}`} >
                      <div className="overflow-hidden rounded-full mb-4 relative cursor-pointer">
                         <img src={category.image} alt={category.name}
                         className="w-full h-auto transform transition-transform duration-300 ease-in-out hover:scale-110" />

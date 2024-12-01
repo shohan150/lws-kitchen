@@ -8,7 +8,11 @@ export function getCategory(id) {
 }
 
 export function getCategoryPosts(id) {
-   return recipes.filter((recipe) => recipe.category_id === id);
+   const categoryPosts = recipes.filter((recipe) => recipe.category_id === id);
+
+   const sortedCategoryPosts = categoryPosts.sort((a, b) => new Date(b.published_date) - new Date(a.published_date)).slice(0, 4);
+
+   return sortedCategoryPosts;
 }
 
 export function getCategoryId(name) {
