@@ -1,8 +1,31 @@
 import recipies from "../data/recipes.json";
 
 
-export function getRecipe(id){
-   return recipies.find((recipe) => recipe.id === id);
+export function getRecipe(title){
+   let convertedTitle = title.replace(/%20/g, ' ');
+   convertedTitle = convertedTitle.replace(/%27/g, "'");
+   convertedTitle = convertedTitle.replace(/%22/g, '"');
+   convertedTitle = convertedTitle.replace(/%23/g, '#');
+   convertedTitle = convertedTitle.replace(/%24/g, '$');
+   convertedTitle = convertedTitle.replace(/%25/g, '%');
+   convertedTitle = convertedTitle.replace(/%26/g, '&');
+   convertedTitle = convertedTitle.replace(/%2F/g, '/');
+   convertedTitle = convertedTitle.replace(/%28/g, '(');
+   convertedTitle = convertedTitle.replace(/%29/g, ')');
+   convertedTitle = convertedTitle.replace(/%2A/g, '*');
+   convertedTitle = convertedTitle.replace(/%2B/g, '+');
+   convertedTitle = convertedTitle.replace(/%2C/g, ',');
+   convertedTitle = convertedTitle.replace(/%2D/g, '-');
+   convertedTitle = convertedTitle.replace(/%2E/g, '.');
+   convertedTitle = convertedTitle.replace(/%2F/g, '/');
+   convertedTitle = convertedTitle.replace(/%3A/g, ':');
+   convertedTitle = convertedTitle.replace(/%3B/g, ';');
+   convertedTitle = convertedTitle.replace(/%3D/g, '=');
+
+   console.log("a",convertedTitle);
+   
+
+   return recipies.find((recipe) => recipe.title === convertedTitle);
 }
 
 export function getHighRatedRecipies() {

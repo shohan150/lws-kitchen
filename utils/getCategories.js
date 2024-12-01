@@ -11,6 +11,12 @@ export function getCategoryPosts(id) {
    return recipes.filter((recipe) => recipe.category_id === id);
 }
 
+export function getCategoryId(name) {
+  const categoryId = categories.find((category) => category.name === name);
+
+  return categoryId.id; 
+}
+
 export function getTopCategories() {
    const recipeCounts = recipes.reduce((counts, recipe) => {
       const categoryId = recipe.category_id;

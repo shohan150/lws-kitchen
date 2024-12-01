@@ -1,7 +1,10 @@
 
-import { getCategoryPosts } from "@/utils/getCategories";
+import { getCategoryId, getCategoryPosts } from "@/utils/getCategories";
+import Link from "next/link";
 
-const CategoryPage = ({ params: { catId } }) => {
+const CategoryPage = ({ params: { catName } }) => {
+
+  const catId = getCategoryId(catName);
 
   const recipies = getCategoryPosts(catId);
 
@@ -10,7 +13,7 @@ const CategoryPage = ({ params: { catId } }) => {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-4xl font-bold mb-2">
-            Desserts <span className="text-gray-500 text-2xl font-normal">({recipies.length} Recipes)</span>
+            {catName} <span className="text-gray-500 text-2xl font-normal">({recipies.length} Recipes)</span>
           </h1>
           <p className="text-gray-600">
             One thing I learned living in the Canarsie section of Brooklyn, NY was how to cook a good Italian meal. Here
@@ -24,11 +27,13 @@ const CategoryPage = ({ params: { catId } }) => {
         {
           recipies.map((recipe, i) => (
             <div key={i} className="bg-white rounded-lg overflow-hidden shadow-md">
-              <img src={`/thumbs/${recipe.thumbnail}`} alt={recipe.title}
-                className="w-full h-48 object-cover" />
-              <div className="p-4">
-                <h2 className="font-semibold text-lg mb-2">{recipe.title}</h2>
-              </div>
+              <Link href={`${catName}/${recipe.title}`}>
+                <img src={`/thumbs/${recipe.thumbnail}`} alt={recipe.title}
+                  className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <h2 className="font-semibold text-lg mb-2">{recipe.title}</h2>
+                </div>
+              </Link>
             </div>
           ))
         }
