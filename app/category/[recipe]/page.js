@@ -1,15 +1,22 @@
+import MayAlsoLike from "@/components/MayAlsoLike";
+import { getRecipe } from "@/utils/getRecipies";
+
 export default function Recipe({ params: { recipe } }) {
+  const recipe = getRecipe(recipe);
+
+  const {title, author, description, thumbnail, published_date, cooking_time, rating, category_id} = recipe;
+
   return (
     <main class="container mx-auto px-4 py-8">
       <article>
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">A full guide for a better and smarter cooking</h1>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">{title}</h1>
         <div class="flex items-center space-x-4 mb-6">
           <img src="./assets/avater.png" alt="Author" class="w-8 h-8 rounded-full" />
-          <span class="text-gray-600">Tricia Albert</span>
+          <span class="text-gray-600">{author}</span>
           <span class="text-gray-400">|</span>
-          <span class="text-gray-600">15 mins</span>
+          <span class="text-gray-600">{cooking_time}</span>
           <span class="text-gray-400">|</span>
-          <span class="text-gray-600">12 Nov 2021</span>
+          <span class="text-gray-600">getFormattedDate(published_date)</span>
         </div>
         <div class="flex justify-between items-center mb-8">
           <div class="flex space-x-4">
@@ -74,27 +81,7 @@ export default function Recipe({ params: { recipe } }) {
         </p>
       </article>
 
-      <section class="my-12">
-        <h2 class="text-3xl font-bold mb-8">You might also like</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div>
-            <img src="./assets/thumbs/thumb-10.jpg" alt="Recipe 1" class="w-full h-60 object-cover rounded-lg mb-2" />
-            <h3 class="font-semibold">Strawberries and Cream Cake</h3>
-          </div>
-          <div>
-            <img src="./assets/thumbs/thumb-11.jpg" alt="Recipe 2" class="w-full h-60 object-cover rounded-lg mb-2" />
-            <h3 class="font-semibold">No-Bake Cheesecake</h3>
-          </div>
-          <div>
-            <img src="./assets/thumbs/thumb-12.jpg" alt="Recipe 3" class="w-full h-60 object-cover rounded-lg mb-2" />
-            <h3 class="font-semibold">Peanut Butter Banana Cake</h3>
-          </div>
-          <div>
-            <img src="./assets/thumbs/thumb-13.jpg" alt="Recipe 4" class="w-full h-60 object-cover rounded-lg mb-2" />
-            <h3 class="font-semibold">Banana Bread Cake</h3>
-          </div>
-        </div>
-      </section>
+      <MayAlsoLike catId={category_id} />
     </main>
   )
 }

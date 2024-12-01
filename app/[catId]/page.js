@@ -1,77 +1,38 @@
 
-import ContentDisplay from "@/components/ContentDisplay";
+import { getCategoryPosts } from "@/utils/getCategories";
 
 const CategoryPage = ({ params: { catId } }) => {
 
+  const recipies = getCategoryPosts(catId);
+
     return(
-      <main class="container mx-auto px-4 py-8 mt-[100px]">
-      <div class="flex justify-between items-center mb-8">
+      <main className="container mx-auto px-4 py-8 mt-[100px]">
+      <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 class="text-4xl font-bold mb-2">
-            Desserts <span class="text-gray-500 text-2xl font-normal">(98 Recipes)</span>
+          <h1 className="text-4xl font-bold mb-2">
+            Desserts <span className="text-gray-500 text-2xl font-normal">({recipies.length} Recipes)</span>
           </h1>
-          <p class="text-gray-600">
+          <p className="text-gray-600">
             One thing I learned living in the Canarsie section of Brooklyn, NY was how to cook a good Italian meal. Here
             is a recipe I created after having this dish in a restaurant. Enjoy!
           </p>
         </div>
       </div>
   
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-8.jpg" alt="Decadent Raspberry and Cream Cake"
-            class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Decadent Raspberry and Cream Cake</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-7.jpg" alt="Tripple Chocolate Mousse Cake" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Tripple Chocolate Mousse Cake</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-6.jpg" alt="Cranberry Curd Layered Sponge Cake"
-            class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Cranberry Curd Layered Sponge Cake</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-5.jpg" alt="Orange and Lemon Curd Tartlets" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Orange and Lemon Curd Tartlets</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-4.jpg" alt="Creamt Chocolate Nutella Fudge Cake"
-            class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Creamt Chocolate Nutella Fudge Cake</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-3.jpg" alt="Homemade Mixed Berries Wedding Cake"
-            class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Homemade Mixed Berries Wedding Cake</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-2.jpg" alt="Black Forest Birthday Cake" class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Black Forest Birthday Cake</h2>
-          </div>
-        </div>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md">
-          <img src="./assets/thumbs/thumb-1.jpg" alt="Double Thick Layered Sponge Cake"
-            class="w-full h-48 object-cover" />
-          <div class="p-4">
-            <h2 class="font-semibold text-lg mb-2">Double Thick Layered Sponge Cake</h2>
-          </div>
-        </div>
-        <!-- Repeat the above div structure for the remaining dessert items -->
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+        {
+          recipies.map((recipe, i) => (
+            <div key={i} className="bg-white rounded-lg overflow-hidden shadow-md">
+              <img src={`/thumbs/${recipe.thumbnail}`} alt={recipe.title}
+                className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h2 className="font-semibold text-lg mb-2">{recipe.title}</h2>
+              </div>
+            </div>
+          ))
+        }
+
       </div>
     </main>
     )
